@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 
 namespace HomeWork11
@@ -10,148 +11,170 @@ namespace HomeWork11
     {
         static void Main(string[] args)
         {            
-            List<Task> tasks = new List<Task>()
-            {
-                new Task()
+            ManagerTasks managerTasks = new ManagerTasks(); // Объявляем и инициализируем задачами объект класса "Управление задачами"
+            managerTasks.AddTask(
+                new Task
                 {
                     Id = 1,
                     Title = "Введение в платформу Microsoft.NET.",
                     Description = "Решение четырёх задач.",
                     DueDate = new DateTime(2024, 5, 1),
                     Priority = "3. низкий"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 2,
+                    Id = 2,
                     Title = "Массивы и строки.",
                     Description = "Решение семи заданий.",
                     DueDate = new DateTime(2024, 5, 9),
                     Priority = "2. средний"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 3,
+                    Id = 3,
                     Title = "Классы, структуры, свойства. Обработка исключений.",
                     Description = "Решения шести заданий.",
                     DueDate = new DateTime(2024, 5, 27),
                     Priority = "1. высокий"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 4,
+                    Id = 4,
                     Title = "Наследование и полиморфизм. Пространство имён.",
                     Description = "Разработка игры \'Крестики-нолики\'. Азбука Морзе. Решение ещё четырёх задач.",
                     DueDate = new DateTime(2024, 5, 27),
                     Priority = "3. низкий"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 5,
+                    Id = 5,
                     Title = "Перегрузка операторов.",
                     Description = "Приложение \'Список книг для прочтения\'. Операции с матрицами.",
                     DueDate = new DateTime(2024, 5, 22),
                     Priority = "2. средний"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 6,
+                    Id = 6,
                     Title = "Интерфейсы",
                     Description = "Программа поэтапного строительства дома.",
                     DueDate = new DateTime(2024, 5, 23),
                     Priority = "1. высокий"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id=7,
+                    Id = 7,
                     Title = "Generics.",
                     Description = "Приложение \'Покупка недвижимости\'.",
                     DueDate = new DateTime(2024, 6, 3),
                     Priority = "3. низкий"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 8,
+                    Id = 8,
                     Title = "Делегаты, события и LINQ.",
                     Description = "Решение трёх задач.",
                     DueDate = new DateTime(2024, 6, 5),
                     Priority = "2. средний"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 9,
+                    Id = 9,
                     Title = "Обработка исключений.",
                     Description = "Приложение \'Управление саиском контактов\'.",
                     DueDate = new DateTime(2024, 6, 6),
                     Priority = "1. высокий"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 10,
+                    Id = 10,
                     Title = "Подготовка к экзамену.",
                     Description = "Приложение \'Система учёта товаров в магазине\'.",
                     DueDate = new DateTime(2024, 6, 3),
                     Priority = "3. низкий"
-                },
+                });
+            managerTasks.AddTask(
                 new Task()
                 {
-                    Id= 11,
+                    Id = 11,
                     Title = "Сиреализация и работа с файлами.",
                     Description = "Приложение \'Система управления задачами\'.",
                     DueDate = new DateTime(2024, 6, 12),
                     Priority = "2. средний"
-                },
-            }; // Список задач                        
-            Create_XML(tasks); // Сохранение задач в файле формата XML
-            Create_JSON(tasks); // Сохранение задач в файле формата JSON
-            Create_CSV(tasks); // Сохранение задач в файле формате CSV
-            Download_XML(); // Загрузка списка задач из xml-файла
-            Download_JSON(); // Загрузка списка задач из json-файла
-            Download_CSV(); // Загрузка списка задач из csv-файла
-
-            // ------------- Фильтрация задач со сроком выполнения в мае -------------------            
-            List<Task> filtr = tasks.Where(el => el.DueDate.Month == 5).ToList();
-            Print(filtr, "\nФильтрация задач со сроком выполнения в мае:\n");
-
-            // ------------- Фильтрация задач со сроком выполнения в июне -------------------            
-            filtr = tasks.Where(el => el.DueDate.Month == 6).ToList();
-            Print(filtr, "\nФильтрация задач со сроком выполнения в июне:\n");
-
-            // ------------- Группировка задач по приоритету (1. высокий) -------------------
-            Print(tasks.Where(el => el.Priority == "1. высокий").ToList(), "\nГруппировка задач по приоритету (1. высокий):\n");
-
-            // ------------- Группировка задач по приоритету (2. средний) -------------------
-            Print(tasks.Where(el => el.Priority == "2. средний").ToList(), "\nГруппировка задач по приоритету (2. средний):\n");
-
-            // ------------- Группировка задач по приоритету (3. низккий) -------------------
-            Print(tasks.Where(el => el.Priority == "3. низкий").ToList(), "\nГруппировка задач по приоритету (3. низкий):");
+                });
+            managerTasks.SortId(); // Сортируем список заданий по возрастанию Id
+            managerTasks.CreateXML(); // Сохранение списка задач в файле формата XML
+            managerTasks.CreateJSON(); // Сохранение списка задач в файле формата JSON
+            managerTasks.CreateCSV(); // Сохранение списка задач в файле формате CSV
+            managerTasks.CleanAll(); // Чистим список заданий полностью
+            foreach (var el in managerTasks.DownloadXML()) // Цикл записи в список заданий считанной из xml-файла информации
+                managerTasks.AddTask(el);
+            Print(managerTasks, "Загрузка списка задач из файла .xml:\n");
+            managerTasks.CleanAll();
+            foreach (var el in managerTasks.DownloadJSON()) // Цикл записи в список заданий считанной из json-файла информации
+                managerTasks.AddTask(el);
+            Print(managerTasks.DownloadJSON(), "\nЗагрузка списка задач из файла .json:\n");
+            managerTasks.CleanAll();
+            foreach (var el in managerTasks.DownloadCSV()) // Цикл записи в список заданий считанной из csv-файла информации
+                managerTasks.AddTask(el);
+            Print(managerTasks.DownloadCSV(), "\nЗагрузка списка задач из файла .csv:\n");
+            
+            // ---------------- Фильтрация сроков выполнения задач из списка ------------------
+            Print(managerTasks.FiltrMonth(5), "\nФильтрация задач со сроком выполнения в мае:\n");                        
+            Print(managerTasks.FiltrMonth(6), "\nФильтрация задач со сроком выполнения в июне:\n");
+            
+            // ---------------- Группировка списка задач по приоритету выполения ----------------------
+            Print(managerTasks.GroupByPriority("1. высокий"), "\nГруппировка задач по приоритету (1. высокий):\n");                        
+            Print(managerTasks.GroupByPriority("2. средний"), "\nГруппировка задач по приоритету (2. средний):\n");                       
+            Print(managerTasks.GroupByPriority("3. низкий"), "\nГруппировка задач по приоритету (3. низкий):\n");
                 
-            // ------------- Сортировка задач по возрастанию срока сдачи -------------------
-            Print(tasks.OrderBy(el => el.DueDate).ToList(), "\nСортировка задач по возрастанию срока сдачи:\n");
+            // ------------- Сортировка списка задач по сроку сдачи -------------------
+            Print(managerTasks.DateOrderBy(), "\nСортировка задач по возрастанию срока сдачи:\n");            
+            Print(managerTasks.DateOrderByDescending(), "\nСортировка задач по убыванию срока сдачи:\n");
 
-            // ------------- Сортировка задач по возрастанию срока сдачи -------------------
-            Print(tasks.OrderByDescending(el => el.DueDate).ToList(), "\nСортировка задач по убыванию срока сдачи:\n");
+            // ------------- Сортировка списка задач по приоретету -------------------
+            Print(managerTasks.PriorityOrderByDescending(), "\nСортировка задач по возрастанию приоретета:\n");            
+            Print(managerTasks.PriorityOrderBy(), "\nСортировка задач по убыванию приоретета:\n");
 
-            // ------------- Сортировка задач по возрастанию приоретета -------------------
-            Print(tasks.OrderByDescending(el => el.Priority[0]).ToList(), "\nСортировка задач по возрастанию приоретета:\n");
-
-            // ------------- Сортировка задач по убыванию приоретета -------------------
-            Print(tasks.OrderBy(el => el.Priority[0]).ToList(), "\nСортировка задач по убыванию приоретета:\n");
-
-            // ------------ Добавление новой задачи ---------------
+            // ------------ Добавление новой задачи пользователем ---------------
             Task task = new Task();
+            bool key_mistake = false; // Код ошибки (true - если невозможно внести новую задачу в список)
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nДобавление новой задачи пользователем:\n");
+            Console.ForegroundColor= ConsoleColor.White;
             Console.Write("Введите тему задания -> ");
             task.Title = Console.ReadLine();
             Console.Write("Введите описание задания -> ");
             task.Description = Console.ReadLine();
             Console.Write("Введите приоритет задания -> ");
             task.Priority = Console.ReadLine();
-            Console.Write("Добавление нового задания в список\nВведите номер задания -> ");
+            Console.Write("Введите номер задания -> ");
             try
             {
-                if (Int32.TryParse(Console.ReadLine(), out int num))
+                if (Int32.TryParse(Console.ReadLine(), out int num) && num > 0)
+                {
+                    foreach (Task el in managerTasks.Tasks)
+                        if (el.Id == num)
+                        {
+                            key_mistake = true;
+                            throw new InvalidExcrption("Задание с таким Id уже усть!");                            
+                        }                       
                     task.Id = num;
+                }
                 else
+                {
+                    key_mistake = true;
                     throw new InvalidExcrption("Некорректно введённые данные!");
+                }
             }
             catch (InvalidExcrption ex)
             {
@@ -163,141 +186,150 @@ namespace HomeWork11
                 if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
                     task.DueDate = date;
                 else
+                {
+                    key_mistake = true;
                     throw new InvalidExcrption("Некорректно введённые данные!");
+                }
             }
             catch (InvalidExcrption ex)
             {
                 Console.WriteLine($"\nОшибка добавления нового задания: {ex.Message}");
             }
-        }
-
-        static void Create_XML(List<Task> obj)
-        {
-            XmlDocument doc_xml = new XmlDocument(); // Создаём новый объект типа XmlDocument
-            XmlElement root = doc_xml.CreateElement("Tasks"); // Создаём корневой каталог документа
-            doc_xml.AppendChild(root); // Закрепляем корневой каталог в документе            
-            foreach (Task el in obj) // Цикл создания атрибутов и итертекста вложенного каталога
+            if (!key_mistake) // Если данные пользователем введены корректно, то добавляем новое задание в список заданий
+                managerTasks.AddTask(task);
+            
+            // ------------------ Удаление задания по Id из списка заданий ----------------
+            key_mistake = false;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nУдаление задания из списка заданий.\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Введите Id номер задания -> ");
+            try
             {
-                XmlElement task = doc_xml.CreateElement("Task"); // Создаём вложенный каталог
-                task.SetAttribute("Id", el.Id.ToString());
-                root.AppendChild(task);
-                XmlElement title = doc_xml.CreateElement("Title");
-                title.InnerText = el.Title;
-                task.AppendChild(title);
-                XmlElement disctiption = doc_xml.CreateElement("Discription");
-                disctiption.InnerText = el.Description;
-                task.AppendChild(disctiption);
-                XmlElement dueDate = doc_xml.CreateElement("DueDate");
-                dueDate.InnerText = el.DueDate.ToShortDateString();
-                task.AppendChild(dueDate);
-                XmlElement priority = doc_xml.CreateElement("Priority");
-                priority.InnerText = el.Priority;
-                task.AppendChild(priority);
-            }
-            doc_xml.Save("Tasks.xml"); // Сохраняем созданный файл
-        }
-
-        static void Create_JSON(List<Task> obj)
-        {
-            string json = JsonConvert.SerializeObject(obj); // Создаём строку json, в которую заносим всю коллекцию задач                        
-            File.WriteAllText(@"Tasks.json", json); // Записываем эту строку в файл
-        }
-
-        static void Create_CSV(List<Task> obj)
-        {
-            string filePath = "Tasks.csv"; // Путь к файлу
-            // Создаём новый файловый поток (путь к файлу, создать новый, доступ для записи)
-            using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-            {
-                // Мы должны создать буфер байтов (fstream работает с бинарными файлами)
-                string text = ""; // Инициализируем строку, в которую будем записывать информацию для записи в файл
-                foreach (Task el in obj) // Цикл формирования строки (данные разграничиваем подстрокой "$$$",
-                                         // которая гарантированно не встретится в данных, в отличии от запятой или пробела)                    
-                    text += el.Id.ToString() + "$$$" + el.Title + "$$$" + el.Description + "$$$" + el.DueDate.ToString() 
-                        + "$$$" + el.Priority + '\n';
-                byte[] buffer = System.Text.Encoding.UTF8.GetBytes(text); // Разбиваем текст на байты и формируем массив байтов
-                fileStream.Write(buffer, 0, buffer.Length); // Записываем в поток массив байтов
-            }
-        }
-
-        static void Download_XML()
-        {
-            XmlDocument doc_xml = new XmlDocument();
-            List<Task> result = new List<Task>(); // Список задач, выгруженных из xml-файла
-            doc_xml.Load("Tasks.xml"); // Открываем файл Tasks.xml
-            XmlNode r = doc_xml.DocumentElement; // Вытаскиваем корневой каталог (Tasks)
-            foreach (XmlNode taskNode in r.ChildNodes) // Цикл перебора задач внутри корневого каталога
-            {
-                Task task = new Task
+                if (Int32.TryParse(Console.ReadLine(), out int num) && num > 0)
                 {
-                    Id = Convert.ToInt32(taskNode.Attributes["Id"].Value),
-                    Title = taskNode["Title"].InnerText,
-                    Description = taskNode["Discription"].InnerText,
-                    DueDate = Convert.ToDateTime(taskNode["DueDate"].InnerText),
-                    Priority = taskNode["Priority"].InnerText
-                };
-                result.Add(task);
-            }
-            Print(result, "Загрузка задач из файла .xml:\n");
-        }
-
-        static void Download_JSON()
-        {
-            List<Task> result = new List<Task>(); // Список задач, выгруженных из json-файла            
-            string json;
-            using (StreamReader reader = new StreamReader("Tasks.json"))
-            {
-                json = reader.ReadToEnd();
-                dynamic array = JsonConvert.DeserializeObject(json);
-                foreach (var el in array) // Цикл формирования массива с данными, считанными из json-файла
-                {
-                    Task task = new Task
-                    {
-                        Id = Convert.ToInt32(el.Id),
-                        Title = el.Title,
-                        Description = el.Description,
-                        DueDate = Convert.ToDateTime(el.DueDate),
-                        Priority = el.Priority,
-                    };
-                    result.Add(task);
-                }
-            }
-            Print(result, "\nЗагрузка задач из файла .json:\n");
-        }
-
-        static void Download_CSV()
-        {
-            List<Task> result = new List<Task>(); // Список задач, выгруженных из csv-файла
-            using (StreamReader reader = new StreamReader("Tasks.csv"))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    string[] parts = line.Split("$$$"); // Массив строк из строки, распарсенной по подстроке "$$$"
-                    if (parts.Length == 5)
-                    {
-                        Task task = new Task
+                    foreach (var el in managerTasks.Tasks)
+                        if (el.Id == num)
                         {
-                            Id = Convert.ToInt32(parts[0]),
-                            Title = parts[1],
-                            Description = parts[2],
-                            DueDate = Convert.ToDateTime(parts[3]),
-                            Priority = parts[4],
-                        };
-                        result.Add(task);
+                            managerTasks.RemoveTask(num);
+                            key_mistake = true;
+                            break;
+                        }
+                    if (!key_mistake)
+                        throw new InvalidExcrption("Такого Id номера задания нет в списке!");
+                }
+                else
+                    throw new InvalidExcrption("Некорректно введённое значение!");
+            }
+            catch (InvalidExcrption ex)
+            {
+                Console.WriteLine($"\nОшибка удаления задания: {ex.Message}");
+            }
+
+            // ------------------- Редактирование задания -----------------------
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nРедактирование задания.\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            key_mistake = false;
+            bool flag = false;
+            Task task2 = new Task();
+            Console.Write("Введите Id номер задания -> ");
+            try
+            {
+                if (Int32.TryParse(Console.ReadLine(), out int num) && num > 0)
+                {
+                    foreach (var el in managerTasks.Tasks)
+                        if (el.Id == num)
+                        {
+                            task2.Id = num;
+                            flag = true;
+                            break;
+                        }
+                    if (!flag)
+                    {
+                        key_mistake = true;
+                        throw new InvalidExcrption("Такого Id номера задания нет в списке!");
                     }
                 }
-                Print(result, "\nЗагрузка задач из файла .csv:\n");
+                else
+                {
+                    key_mistake = true;
+                    throw new InvalidExcrption("Некорректно введённое значение!");
+                }
             }
+            catch (InvalidExcrption ex)
+            {
+                Console.WriteLine($"\nОшибка редактирования задания: {ex.Message}");
+            }
+            if (!key_mistake)
+            {
+                Console.Write("Обновите срок выполнения задания -> ");
+                try
+                {
+                    if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
+                        task2.DueDate = date;
+                    else
+                    {
+                        key_mistake = true;
+                        throw new InvalidExcrption("Некорректно введённые данные!");
+                    }
+                }
+                catch (InvalidExcrption ex)
+                {
+                    Console.WriteLine($"\nОшибка редактирования задания: {ex.Message}");
+                }
+            }
+            if (!key_mistake)
+            {
+                Console.Write("Введите тему задания -> ");
+                task2.Title = Console.ReadLine();
+                Console.Write("Введите описание задания -> ");
+                task2.Description = Console.ReadLine();
+                Console.Write("Введите приоритет задания -> ");
+                task2.Priority = Console.ReadLine();
+                managerTasks.Change(task2.Id, task2);
+            }
+            managerTasks.SortId(); // Сортируем обновлённый список заданий по возрастанию Id            
+            managerTasks.CreateXML(); // Сохранение обновлённого списка задач в файле формата XML
+            managerTasks.CreateJSON(); // Сохранение обнослённого списка задач в файле формата JSON
+            managerTasks.CreateCSV(); // Сохранение обсновлённого списка задач в файле формате CSV
+            managerTasks.CleanAll(); // Чистим список заданий полностью
+            foreach (var el in managerTasks.DownloadXML()) // Цикл записи в список заданий считанной из xml-файла информации
+                managerTasks.AddTask(el);
+            Print(managerTasks, "\nЗагрузка списка задач из файла .xml:\n");
+            managerTasks.CleanAll();
+            foreach (var el in managerTasks.DownloadJSON()) // Цикл записи в список заданий считанной из json-файла информации
+                managerTasks.AddTask(el);
+            Print(managerTasks.DownloadJSON(), "\nЗагрузка списка задач из файла .json:\n");
+            managerTasks.CleanAll();
+            foreach (var el in managerTasks.DownloadCSV()) // Цикл записи в список заданий считанной из csv-файла информации
+                managerTasks.AddTask(el);
+            Print(managerTasks.DownloadCSV(), "\nЗагрузка списка задач из файла .csv:\n");
         }
-
-        static void Print(List<Task> obj, string str)
-        {            
+        static void Print(IEnumerable<Task> obj, string str) // Перегруженный метод вывода списка задач в консоль
+        {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(str);
             Console.ForegroundColor = ConsoleColor.White;
-            foreach (Task el in obj) 
-                el.Print();
+            if (obj.Count() > 0)
+                foreach (Task el in obj)
+                    el.Print();
+            else 
+                Console.WriteLine("Файл пустой!");
+            Console.Write("Для продолжения нажмите любую клавишу -> ");
+            Console.ReadKey(true);
+            Console.WriteLine();
+        }
+        static void Print(ManagerTasks obj, string str) 
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(str);
+            Console.ForegroundColor = ConsoleColor.White;
+            if (obj.Size() > 0)
+                foreach (Task el in obj.Tasks)
+                    el.Print();
+            else
+                Console.WriteLine("Файл пустой!");
             Console.Write("Для продолжения нажмите любую клавишу -> ");
             Console.ReadKey(true);
             Console.WriteLine();
